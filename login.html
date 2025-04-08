@@ -1,0 +1,45 @@
+{% extends "layout1.html" %}
+{% block content %}
+
+
+<div class="w3-card-4 w3-margin">
+
+    <header class="w3-container w3-blue">
+      <h1>Login</h1>
+    </header>
+    <br>
+    <form class="w3-container" action="" method="post" enctype="multipart/form-data">
+        <label class="w3-text-teal"><b>Email</b></label>
+        <input class="w3-input w3-border w3-light-grey" type="text" name='email' value="{{ email }}">
+        <br>
+
+        <label class="w3-text-teal"><b>Password</b></label>
+        <input class="w3-input w3-border w3-light-grey" type="password" name='password' value="{{ password }}">
+        <br>
+
+        <input class="w3-btn w3-blue-grey" name="login" type="submit" value="Login">
+        <br><br>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+
+    <br>
+    <footer class="w3-container w3-blue">
+        <h5></h5>
+    </footer>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="w3-card-4 w3-margin">
+    <header class="w3-container w3-blue">
+        <h1>Upload Input Image</h1>
+    </header>
+    {% if uploaded_image %}
+  <div style="text-align: center;">
+    <img
+        src="{{ url_for('static', filename=uploaded_image) }}"
+        alt="Uploaded Image"
+        style="max-width: 250px"
+    />
+    {% endif %}
+    <br />
+  </div>
+    <form
+        class="w3-container w3-margin"
+        action="{{ url_for('image') }}"
+        method="post"
+        enctype="multipart/form-data"
+    >
+        <input
+            class="w3-btn w3-blue-grey"
+            type="file"
+            name="photo"
+            accept="image/*"
+        />
+        <input
+            class="w3-btn w3-blue-grey"
+            name="sub"
+            type="submit"
+            value="Upload"
+        />
+        <input class="w3-btn w3-blue-grey" name="sub" type="submit" value="Test" />
+    </form>
+
+    <br />
+    <footer class="w3-container w3-blue">
+        <h5></h5>
+    </footer>
+</div>
+
+<div class="w3-card-4 w3-margin">
+    <header class="w3-container w3-blue"style="text-align: center;">
+        <h1>Preprocessed Result</h1>
+        
+    </header>
+   
+    <div class="w3-container">
+        {% if fruit %}
+        <p>
+            <b>The leaf is predicted to be: <u>{{ fruit }}</u></b>
+        </p>
+        {% if result %} <p>
+            <b>Precautions:</b><br>
+            {{ result | replace('\n', '<br>') | safe }} </p>
+        {% endif %}
+    
+        {% endif %}
+        
+    </div>
+
+    <footer class="w3-container w3-blue">
+        <h5></h5>
+    </footer>
+</div>
+
+{% endblock %}
